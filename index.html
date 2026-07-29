@@ -1,0 +1,1631 @@
+<!DOCTYPE html>
+<!-- saved from url=(0063)file:///E:/Work/Personal/Python%20Learning/mastery-roadmap.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Ascent — Python → AI / ML / Geospatial / Deep Learning</title>
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+<link href="./mastery-roadmap_files/css2" rel="stylesheet">
+<style>
+  :root{
+    --ink:#161F1A;
+    --ink-soft:#1E2A23;
+    --paper:#EDE6D6;
+    --paper-dim:#E2D9C4;
+    --line:#4A6656;
+    --lowland:#7FA662;
+    --gold:#C99A44;
+    --slate:#7C93A3;
+    --flag:#B23A2E;
+    --text-hi:#F4EFE3;
+    --text-mid:#B9C4B9;
+    --text-on-paper:#22291F;
+    --text-on-paper-mid:#5B6455;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:
+      repeating-linear-gradient(115deg, rgba(122,150,120,0.05) 0px, rgba(122,150,120,0.05) 1px, transparent 1px, transparent 34px),
+      repeating-linear-gradient(25deg, rgba(122,150,120,0.035) 0px, rgba(122,150,120,0.035) 1px, transparent 1px, transparent 46px),
+      var(--ink);
+    color:var(--text-hi);
+    font-family:'IBM Plex Sans', system-ui, sans-serif;
+    -webkit-font-smoothing:antialiased;
+    padding-bottom:80px;
+  }
+  .wrap{max-width:920px;margin:0 auto;padding:0 20px;}
+
+  /* ---------- HERO ---------- */
+  header.hero{padding:56px 0 28px;border-bottom:1px solid rgba(244,239,227,0.12);}
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;letter-spacing:0.14em;text-transform:uppercase;
+    color:var(--gold);margin-bottom:14px;
+  }
+  h1{
+    font-family:'Fraunces', serif;
+    font-optical-sizing:auto;
+    font-weight:600;
+    font-size:clamp(38px,7vw,64px);
+    line-height:0.98;
+    margin:0 0 14px;
+    letter-spacing:-0.01em;
+  }
+  .subtitle{
+    max-width:56ch;color:var(--text-mid);font-size:16px;line-height:1.55;margin:0 0 32px;
+  }
+
+  /* instrument panel */
+  .panel{
+    display:grid;grid-template-columns:auto 1fr;gap:28px;
+    background:var(--ink-soft);border:1px solid rgba(244,239,227,0.12);
+    border-left:3px solid var(--gold);
+    padding:20px 24px;margin-bottom:34px;
+  }
+  @media (max-width:620px){.panel{grid-template-columns:1fr;}}
+  .panel .big-stat{display:flex;flex-direction:column;justify-content:center;min-width:120px;}
+  .big-stat .num{font-family:'Fraunces', serif;font-weight:600;font-size:52px;line-height:1;color:var(--gold);}
+  .big-stat .label{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-mid);margin-top:6px;}
+  .focus-block .focus-eyebrow{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:var(--flag);margin-bottom:6px;}
+  .focus-block h3{font-family:'Fraunces', serif;font-weight:600;font-size:22px;margin:0 0 4px;}
+  .focus-block .focus-meta{font-size:13px;color:var(--text-mid);margin-bottom:10px;}
+  .focus-block ul{margin:0;padding-left:18px;}
+  .focus-block li{font-size:14px;line-height:1.7;color:var(--text-hi);}
+  .rail-mini{display:flex;gap:22px;margin-top:14px;flex-wrap:wrap;}
+  .rail-mini div{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text-mid);}
+  .rail-mini b{color:var(--text-hi);}
+
+  /* ---------- ELEVATION CHART ---------- */
+  .chart-card{margin-bottom:46px;}
+  .chart-card .chart-caption{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text-mid);margin-bottom:8px;letter-spacing:0.04em;}
+  svg#elevation{width:100%;height:auto;display:block;}
+  .step-label{font-family:'IBM Plex Mono',monospace;font-size:13px;fill:var(--text-hi);font-weight:600;}
+  .step-month{font-family:'IBM Plex Mono',monospace;font-size:10px;fill:var(--text-mid);}
+  .rail-label{font-family:'IBM Plex Mono',monospace;font-size:10px;fill:var(--text-mid);letter-spacing:0.05em;}
+  #flag-group{transition:transform 0.6s ease;}
+  @media (prefers-reduced-motion: no-preference){
+    #flag-pin{animation:bob 2.6s ease-in-out infinite;}
+  }
+  @keyframes bob{0%,100%{transform:translateY(0);}50%{transform:translateY(-4px);}}
+
+  /* ---------- CONTROLS ---------- */
+  .controls{display:flex;gap:10px;margin-bottom:22px;flex-wrap:wrap;}
+  button.ctrl{
+    font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;
+    background:transparent;border:1px solid rgba(244,239,227,0.28);color:var(--text-hi);
+    padding:9px 14px;cursor:pointer;
+  }
+  button.ctrl:hover{border-color:var(--gold);color:var(--gold);}
+  button.ctrl:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
+
+  /* ---------- SECTION HEADERS ---------- */
+  .section-heading{
+    font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;
+    color:var(--slate);margin:36px 0 14px;display:flex;align-items:center;gap:10px;
+  }
+  .section-heading::after{content:'';flex:1;height:1px;background:rgba(244,239,227,0.14);}
+
+  /* ---------- TRACK CARDS ---------- */
+  details.track{
+    background:var(--paper);color:var(--text-on-paper);
+    margin-bottom:14px;
+    border-left:6px solid var(--card-color, var(--lowland));
+    box-shadow:0 1px 0 rgba(0,0,0,0.2);
+  }
+  details.track > summary{
+    list-style:none;cursor:pointer;padding:18px 22px;
+    display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center;
+  }
+  details.track > summary::-webkit-details-marker{display:none;}
+  details.track > summary:focus-visible{outline:2px solid var(--text-on-paper);outline-offset:-2px;}
+  .track-title-row{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;}
+  .track-letter{
+    font-family:'Fraunces',serif;font-weight:700;font-size:13px;color:#fff;
+    background:var(--card-color, var(--lowland));
+    width:22px;height:22px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;
+    flex-shrink:0;
+  }
+  .track-name{font-family:'Fraunces',serif;font-weight:600;font-size:21px;}
+  .track-meta{
+    font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--text-on-paper-mid);
+    display:flex;gap:14px;flex-wrap:wrap;margin-top:4px;
+  }
+  .track-progress-wrap{display:flex;flex-direction:column;align-items:flex-end;gap:6px;min-width:120px;}
+  .track-progress-num{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--text-on-paper-mid);}
+  .bar-track{width:110px;height:6px;background:rgba(0,0,0,0.12);position:relative;}
+  .bar-fill{height:100%;background:var(--card-color, var(--lowland));width:0%;transition:width 0.4s ease;}
+
+  .track-body{padding:0 22px 22px;border-top:1px dashed rgba(0,0,0,0.15);}
+  .group-title{
+    font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;
+    color:var(--text-on-paper-mid);margin:18px 0 8px;
+  }
+  ul.item-list{list-style:none;margin:0;padding:0;}
+  ul.item-list li{
+    display:flex;align-items:flex-start;gap:10px;padding:6px 0;
+    border-bottom:1px solid rgba(0,0,0,0.06);
+  }
+  ul.item-list li:last-child{border-bottom:none;}
+  input.chk{
+    appearance:none;-webkit-appearance:none;
+    width:17px;height:17px;flex-shrink:0;margin-top:2px;
+    border:1.5px solid var(--text-on-paper-mid);background:transparent;cursor:pointer;position:relative;
+  }
+  input.chk:checked{background:var(--card-color, var(--lowland));border-color:var(--card-color, var(--lowland));}
+  input.chk:checked::after{
+    content:'';position:absolute;left:4px;top:0px;width:5px;height:9px;
+    border:solid #fff;border-width:0 2px 2px 0;transform:rotate(40deg);
+  }
+  input.chk:focus-visible{outline:2px solid var(--flag);outline-offset:2px;}
+  label.item-text{font-size:14px;line-height:1.5;cursor:pointer;}
+  li.done label.item-text{color:var(--text-on-paper-mid);text-decoration:line-through;text-decoration-color:rgba(0,0,0,0.25);}
+
+  .resources{margin-top:18px;padding-top:14px;border-top:1px dashed rgba(0,0,0,0.15);}
+  .resources .group-title{margin-top:0;}
+  .resources ul{margin:0;padding-left:18px;}
+  .resources li{font-size:13px;line-height:1.7;color:var(--text-on-paper-mid);}
+
+  .milestone{
+    margin-top:16px;padding:12px 14px;background:rgba(178,58,46,0.08);
+    border-left:3px solid var(--flag);font-size:13.5px;line-height:1.6;
+  }
+  .milestone b{color:var(--flag);font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.08em;text-transform:uppercase;display:block;margin-bottom:4px;}
+
+  footer{margin-top:50px;padding-top:22px;border-top:1px solid rgba(244,239,227,0.12);}
+  footer p{font-size:12px;color:var(--text-mid);line-height:1.7;max-width:60ch;}
+  footer button{margin-top:6px;}
+
+  @media (max-width:560px){
+    details.track > summary{grid-template-columns:1fr;}
+    .track-progress-wrap{align-items:flex-start;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <div class="eyebrow">Field Route — Self-Directed, 20+ hrs/week</div>
+    <h1>The Ascent</h1>
+    <p class="subtitle">Base camp is Python. The summit is GeoAI — deep learning applied to spatial data. Math is the bedrock underneath the whole route, and visibility is the supply line that makes the climb count to anyone but you. Check things off as you go — the map below always shows where to stand next.</p>
+
+    <div class="panel">
+      <div class="big-stat">
+        <span class="num" id="overall-pct">1%</span>
+        <span class="label">Route progress</span>
+      </div>
+      <div class="focus-block">
+        <div class="focus-eyebrow">You are here</div>
+        <h3 id="focus-title">Track A — Python Foundations</h3>
+        <div class="focus-meta" id="focus-meta">Base Camp · Months 1–2 · ~15 hrs/wk</div>
+        <ul id="focus-next"><li>Variables, data types, type casting</li><li>Operators &amp; expressions</li><li>Control flow: if / elif / else</li></ul>
+        <div class="rail-mini">
+          <div>BEDROCK · MATH <b id="math-pct">0%</b></div>
+          <div>SUPPLY LINE · VISIBILITY <b id="vis-pct">0%</b></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="chart-card">
+      <div class="chart-caption">ELEVATION PROFILE — bar height = scope of the stage, fill = how much you've climbed</div>
+      <svg id="elevation" viewBox="0 0 1000 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Elevation chart of the six main learning stages, from Python foundations at base camp to GeoAI at the summit">
+        <!-- baseline -->
+        <line x1="20" y1="260" x2="980" y2="260" stroke="rgba(244,239,227,0.25)" stroke-width="1"></line>
+        <!-- bedrock rail -->
+        <line x1="20" y1="272" x2="980" y2="272" stroke="rgba(124,147,163,0.35)" stroke-width="2" stroke-dasharray="2 5"></line>
+        <text x="20" y="290" class="rail-label">BEDROCK — MATH (ONGOING)</text>
+        <!-- supply line rail -->
+        <line x1="20" y1="30" x2="980" y2="30" stroke="rgba(178,58,46,0.4)" stroke-width="2" stroke-dasharray="2 5"></line>
+        <text x="20" y="20" class="rail-label" fill="#B23A2E">SUPPLY LINE — VISIBILITY (FROM MONTH 3, ONGOING)</text>
+
+        <!-- track outlines (fixed) + fill rects (dynamic, ids fill-A etc) -->
+        <!-- A: x 20-111 h up to y210(height 50) -->
+        <rect x="20" y="210" width="91.4" height="50" fill="none" stroke="var(--lowland)" stroke-width="1.5"></rect>
+        <rect id="fill-A" x="20" y="258.0769230769231" width="91.4" height="1.9230769230769231" fill="var(--lowland)"></rect>
+        <text x="26" y="203" class="step-label">A · Python</text>
+        <text x="26" y="278" class="step-month" transform="translate(0,4)">M1–2</text>
+
+        <!-- C: x 111.4-202.9 up to y180 (height80) -->
+        <rect x="111.4" y="180" width="91.5" height="80" fill="none" stroke="#95B586" stroke-width="1.5"></rect>
+        <rect id="fill-C" x="111.4" y="260" width="91.5" height="0" fill="#95B586"></rect>
+        <text x="117.4" y="173" class="step-label">C · Data</text>
+
+        <!-- D: x 202.9-340 up to y150 (height110) -->
+        <rect x="202.9" y="150" width="137.1" height="110" fill="none" stroke="var(--gold)" stroke-width="1.5"></rect>
+        <rect id="fill-D" x="202.9" y="260" width="137.1" height="0" fill="var(--gold)"></rect>
+        <text x="208.9" y="143" class="step-label">D · Classical ML</text>
+        <text x="208.9" y="278" class="step-month">M4–7</text>
+
+        <!-- E: x 340-522.9 up to y124 (height136) -->
+        <rect x="340" y="124" width="182.9" height="136" fill="none" stroke="#B8C9D2" stroke-width="1.5"></rect>
+        <rect id="fill-E" x="340" y="260" width="182.9" height="0" fill="#B8C9D2"></rect>
+        <text x="346" y="117" class="step-label">E · Geospatial</text>
+        <text x="346" y="278" class="step-month">M5–9</text>
+
+        <!-- F: x 522.9-705.7 up to y92 (height168) -->
+        <rect x="522.9" y="92" width="182.8" height="168" fill="none" stroke="var(--slate)" stroke-width="1.5"></rect>
+        <rect id="fill-F" x="522.9" y="260" width="182.8" height="0" fill="var(--slate)"></rect>
+        <text x="528.9" y="85" class="step-label">F · Deep Learning</text>
+        <text x="528.9" y="278" class="step-month">M7–11</text>
+
+        <!-- G: x 705.7-980 up to y50 (height210) -->
+        <rect x="705.7" y="50" width="274.3" height="210" fill="none" stroke="#E4D9BE" stroke-width="1.5"></rect>
+        <rect id="fill-G" x="705.7" y="260" width="274.3" height="0" fill="#E4D9BE"></rect>
+        <text x="711.7" y="43" class="step-label">G · GeoAI (Summit)</text>
+        <text x="711.7" y="278" class="step-month">M10–16+</text>
+
+        <g id="flag-group" transform="translate(23.515384615384615,230)">
+          <g id="flag-pin">
+            <line x1="0" y1="0" x2="0" y2="-22" stroke="var(--flag)" stroke-width="2"></line>
+            <path d="M0,-22 L14,-17 L0,-12 Z" fill="var(--flag)"></path>
+          </g>
+        </g>
+      </svg>
+    </div>
+
+    <div class="controls">
+      <button class="ctrl" id="expand-all">Expand all</button>
+      <button class="ctrl" id="collapse-all">Collapse all</button>
+    </div>
+  </header>
+
+  <div class="section-heading">Main route</div>
+  <div id="tracks-container">
+  <details class="track" id="card-A" style="--card-color:var(--lowland)" open="">
+    <summary>
+      <div class="track-title-row-wrap">
+        <div class="track-title-row">
+          <span class="track-letter">A</span>
+          <span class="track-name">Python Foundations</span>
+        </div>
+        <div class="track-meta"><span>Base Camp</span><span>Months 1–2</span><span>~15 hrs/wk</span></div>
+      </div>
+      <div class="track-progress-wrap">
+        <span class="track-progress-num" id="num-A">1/26</span>
+        <div class="bar-track"><div class="bar-fill" id="bar-A" style="width: 3.84615%;"></div></div>
+      </div>
+    </summary>
+    <div class="track-body">
+      
+    
+    <ul class="item-list">
+      
+        <li class="done" data-item-row="A-0">
+          <input type="checkbox" class="chk" id="cb-A-0" data-item="A-0" data-track="A">
+          <label class="item-text" for="cb-A-0">Install Python, set up an editor (VS Code/PyCharm), run your first script</label>
+        </li>
+      
+        <li class="" data-item-row="A-1">
+          <input type="checkbox" class="chk" id="cb-A-1" data-item="A-1" data-track="A">
+          <label class="item-text" for="cb-A-1">Variables, data types, type casting</label>
+        </li>
+      
+        <li class="" data-item-row="A-2">
+          <input type="checkbox" class="chk" id="cb-A-2" data-item="A-2" data-track="A">
+          <label class="item-text" for="cb-A-2">Operators &amp; expressions</label>
+        </li>
+      
+        <li class="" data-item-row="A-3">
+          <input type="checkbox" class="chk" id="cb-A-3" data-item="A-3" data-track="A">
+          <label class="item-text" for="cb-A-3">Control flow: if / elif / else</label>
+        </li>
+      
+        <li class="" data-item-row="A-4">
+          <input type="checkbox" class="chk" id="cb-A-4" data-item="A-4" data-track="A">
+          <label class="item-text" for="cb-A-4">Loops: for, while, break/continue</label>
+        </li>
+      
+        <li class="" data-item-row="A-5">
+          <input type="checkbox" class="chk" id="cb-A-5" data-item="A-5" data-track="A">
+          <label class="item-text" for="cb-A-5">Functions: parameters, return values, default args, *args/**kwargs</label>
+        </li>
+      
+        <li class="" data-item-row="A-6">
+          <input type="checkbox" class="chk" id="cb-A-6" data-item="A-6" data-track="A">
+          <label class="item-text" for="cb-A-6">Scope: local vs global</label>
+        </li>
+      
+        <li class="" data-item-row="A-7">
+          <input type="checkbox" class="chk" id="cb-A-7" data-item="A-7" data-track="A">
+          <label class="item-text" for="cb-A-7">Core data structures: lists &amp; tuples</label>
+        </li>
+      
+        <li class="" data-item-row="A-8">
+          <input type="checkbox" class="chk" id="cb-A-8" data-item="A-8" data-track="A">
+          <label class="item-text" for="cb-A-8">Dictionaries &amp; sets</label>
+        </li>
+      
+        <li class="" data-item-row="A-9">
+          <input type="checkbox" class="chk" id="cb-A-9" data-item="A-9" data-track="A">
+          <label class="item-text" for="cb-A-9">String methods &amp; f-strings</label>
+        </li>
+      
+        <li class="" data-item-row="A-10">
+          <input type="checkbox" class="chk" id="cb-A-10" data-item="A-10" data-track="A">
+          <label class="item-text" for="cb-A-10">File I/O: reading/writing text &amp; CSV files</label>
+        </li>
+      
+        <li class="" data-item-row="A-11">
+          <input type="checkbox" class="chk" id="cb-A-11" data-item="A-11" data-track="A">
+          <label class="item-text" for="cb-A-11">Exceptions: try/except/finally, raising custom exceptions</label>
+        </li>
+      
+        <li class="" data-item-row="A-12">
+          <input type="checkbox" class="chk" id="cb-A-12" data-item="A-12" data-track="A">
+          <label class="item-text" for="cb-A-12">Modules &amp; packages, the import system</label>
+        </li>
+      
+        <li class="" data-item-row="A-13">
+          <input type="checkbox" class="chk" id="cb-A-13" data-item="A-13" data-track="A">
+          <label class="item-text" for="cb-A-13">Object-oriented programming: classes, attributes, methods</label>
+        </li>
+      
+        <li class="" data-item-row="A-14">
+          <input type="checkbox" class="chk" id="cb-A-14" data-item="A-14" data-track="A">
+          <label class="item-text" for="cb-A-14">Inheritance, polymorphism, dunder methods</label>
+        </li>
+      
+        <li class="" data-item-row="A-15">
+          <input type="checkbox" class="chk" id="cb-A-15" data-item="A-15" data-track="A">
+          <label class="item-text" for="cb-A-15">Virtual environments: venv or conda</label>
+        </li>
+      
+        <li class="" data-item-row="A-16">
+          <input type="checkbox" class="chk" id="cb-A-16" data-item="A-16" data-track="A">
+          <label class="item-text" for="cb-A-16">Package management: pip, requirements.txt</label>
+        </li>
+      
+        <li class="" data-item-row="A-17">
+          <input type="checkbox" class="chk" id="cb-A-17" data-item="A-17" data-track="A">
+          <label class="item-text" for="cb-A-17">Git basics: init, add, commit, branch, merge</label>
+        </li>
+      
+        <li class="" data-item-row="A-18">
+          <input type="checkbox" class="chk" id="cb-A-18" data-item="A-18" data-track="A">
+          <label class="item-text" for="cb-A-18">GitHub: remotes, push/pull, writing a real README</label>
+        </li>
+      
+        <li class="" data-item-row="A-19">
+          <input type="checkbox" class="chk" id="cb-A-19" data-item="A-19" data-track="A">
+          <label class="item-text" for="cb-A-19">List/dict/set comprehensions</label>
+        </li>
+      
+        <li class="" data-item-row="A-20">
+          <input type="checkbox" class="chk" id="cb-A-20" data-item="A-20" data-track="A">
+          <label class="item-text" for="cb-A-20">Generators &amp; iterators, yield</label>
+        </li>
+      
+        <li class="" data-item-row="A-21">
+          <input type="checkbox" class="chk" id="cb-A-21" data-item="A-21" data-track="A">
+          <label class="item-text" for="cb-A-21">Decorators</label>
+        </li>
+      
+        <li class="" data-item-row="A-22">
+          <input type="checkbox" class="chk" id="cb-A-22" data-item="A-22" data-track="A">
+          <label class="item-text" for="cb-A-22">Lambda functions &amp; map/filter/reduce</label>
+        </li>
+      
+        <li class="" data-item-row="A-23">
+          <input type="checkbox" class="chk" id="cb-A-23" data-item="A-23" data-track="A">
+          <label class="item-text" for="cb-A-23">Basic testing with pytest</label>
+        </li>
+      
+        <li class="" data-item-row="A-24">
+          <input type="checkbox" class="chk" id="cb-A-24" data-item="A-24" data-track="A">
+          <label class="item-text" for="cb-A-24">Debugging: pdb, reading tracebacks</label>
+        </li>
+      
+        <li class="" data-item-row="A-25">
+          <input type="checkbox" class="chk" id="cb-A-25" data-item="A-25" data-track="A">
+          <label class="item-text" for="cb-A-25">Consolidation project: build an end-to-end CLI tool or scraper + analyzer</label>
+        </li>
+      
+    </ul>
+  
+      <div class="resources">
+        <div class="group-title">Resources</div>
+        <ul><li>Python Crash Course — Eric Matthes</li><li>Official Python Tutorial (docs.python.org)</li><li>Corey Schafer — Python YouTube series</li></ul>
+      </div>
+      <div class="milestone"><b>Milestone check</b>Read someone else's intermediate Python script and understand it without Googling every line.</div>
+    </div>
+  </details>
+  <details class="track" id="card-C" style="--card-color:#95B586">
+    <summary>
+      <div class="track-title-row-wrap">
+        <div class="track-title-row">
+          <span class="track-letter">C</span>
+          <span class="track-name">Data Handling &amp; Analysis</span>
+        </div>
+        <div class="track-meta"><span>Camp 1</span><span>Months 2–4</span><span>~12 hrs/wk</span></div>
+      </div>
+      <div class="track-progress-wrap">
+        <span class="track-progress-num" id="num-C">0/14</span>
+        <div class="bar-track"><div class="bar-fill" id="bar-C" style="width:0%"></div></div>
+      </div>
+    </summary>
+    <div class="track-body">
+      
+    
+    <ul class="item-list">
+      
+        <li class="" data-item-row="C-0">
+          <input type="checkbox" class="chk" id="cb-C-0" data-item="C-0" data-track="C">
+          <label class="item-text" for="cb-C-0">NumPy: arrays, shapes, broadcasting, vectorized ops, indexing/slicing</label>
+        </li>
+      
+        <li class="" data-item-row="C-1">
+          <input type="checkbox" class="chk" id="cb-C-1" data-item="C-1" data-track="C">
+          <label class="item-text" for="cb-C-1">Pandas: Series &amp; DataFrame basics</label>
+        </li>
+      
+        <li class="" data-item-row="C-2">
+          <input type="checkbox" class="chk" id="cb-C-2" data-item="C-2" data-track="C">
+          <label class="item-text" for="cb-C-2">Pandas: filtering, sorting, .loc/.iloc indexing</label>
+        </li>
+      
+        <li class="" data-item-row="C-3">
+          <input type="checkbox" class="chk" id="cb-C-3" data-item="C-3" data-track="C">
+          <label class="item-text" for="cb-C-3">Pandas: groupby, pivot tables, merging/joining</label>
+        </li>
+      
+        <li class="" data-item-row="C-4">
+          <input type="checkbox" class="chk" id="cb-C-4" data-item="C-4" data-track="C">
+          <label class="item-text" for="cb-C-4">Handling missing data</label>
+        </li>
+      
+        <li class="" data-item-row="C-5">
+          <input type="checkbox" class="chk" id="cb-C-5" data-item="C-5" data-track="C">
+          <label class="item-text" for="cb-C-5">Time series basics in Pandas</label>
+        </li>
+      
+        <li class="" data-item-row="C-6">
+          <input type="checkbox" class="chk" id="cb-C-6" data-item="C-6" data-track="C">
+          <label class="item-text" for="cb-C-6">Matplotlib fundamentals</label>
+        </li>
+      
+        <li class="" data-item-row="C-7">
+          <input type="checkbox" class="chk" id="cb-C-7" data-item="C-7" data-track="C">
+          <label class="item-text" for="cb-C-7">Seaborn for statistical plots</label>
+        </li>
+      
+        <li class="" data-item-row="C-8">
+          <input type="checkbox" class="chk" id="cb-C-8" data-item="C-8" data-track="C">
+          <label class="item-text" for="cb-C-8">Plotly for interactive visualization</label>
+        </li>
+      
+        <li class="" data-item-row="C-9">
+          <input type="checkbox" class="chk" id="cb-C-9" data-item="C-9" data-track="C">
+          <label class="item-text" for="cb-C-9">SQL: SELECT, WHERE, JOIN, GROUP BY</label>
+        </li>
+      
+        <li class="" data-item-row="C-10">
+          <input type="checkbox" class="chk" id="cb-C-10" data-item="C-10" data-track="C">
+          <label class="item-text" for="cb-C-10">SQL: subqueries &amp; an intro to window functions</label>
+        </li>
+      
+        <li class="" data-item-row="C-11">
+          <input type="checkbox" class="chk" id="cb-C-11" data-item="C-11" data-track="C">
+          <label class="item-text" for="cb-C-11">Connecting Python to a database (sqlite3 / SQLAlchemy)</label>
+        </li>
+      
+        <li class="" data-item-row="C-12">
+          <input type="checkbox" class="chk" id="cb-C-12" data-item="C-12" data-track="C">
+          <label class="item-text" for="cb-C-12">Data cleaning workflow: outliers, duplicates, type coercion</label>
+        </li>
+      
+        <li class="" data-item-row="C-13">
+          <input type="checkbox" class="chk" id="cb-C-13" data-item="C-13" data-track="C">
+          <label class="item-text" for="cb-C-13">Project: full exploratory analysis of a messy public dataset, with written findings</label>
+        </li>
+      
+    </ul>
+  
+      <div class="resources">
+        <div class="group-title">Resources</div>
+        <ul><li>Python for Data Analysis — Wes McKinney</li><li>Mode Analytics SQL Tutorial</li></ul>
+      </div>
+      <div class="milestone"><b>Milestone check</b>Given a messy CSV, clean it, explore it, and tell a clear story within a few hours.</div>
+    </div>
+  </details>
+  <details class="track" id="card-D" style="--card-color:var(--gold)">
+    <summary>
+      <div class="track-title-row-wrap">
+        <div class="track-title-row">
+          <span class="track-letter">D</span>
+          <span class="track-name">Classical Machine Learning</span>
+        </div>
+        <div class="track-meta"><span>Camp 2</span><span>Months 4–7</span><span>~12 hrs/wk</span></div>
+      </div>
+      <div class="track-progress-wrap">
+        <span class="track-progress-num" id="num-D">0/19</span>
+        <div class="bar-track"><div class="bar-fill" id="bar-D" style="width:0%"></div></div>
+      </div>
+    </summary>
+    <div class="track-body">
+      
+    
+    <ul class="item-list">
+      
+        <li class="" data-item-row="D-0">
+          <input type="checkbox" class="chk" id="cb-D-0" data-item="D-0" data-track="D">
+          <label class="item-text" for="cb-D-0">ML vocabulary: features, labels, train/test/validation split</label>
+        </li>
+      
+        <li class="" data-item-row="D-1">
+          <input type="checkbox" class="chk" id="cb-D-1" data-item="D-1" data-track="D">
+          <label class="item-text" for="cb-D-1">Linear regression</label>
+        </li>
+      
+        <li class="" data-item-row="D-2">
+          <input type="checkbox" class="chk" id="cb-D-2" data-item="D-2" data-track="D">
+          <label class="item-text" for="cb-D-2">Logistic regression</label>
+        </li>
+      
+        <li class="" data-item-row="D-3">
+          <input type="checkbox" class="chk" id="cb-D-3" data-item="D-3" data-track="D">
+          <label class="item-text" for="cb-D-3">k-Nearest Neighbors</label>
+        </li>
+      
+        <li class="" data-item-row="D-4">
+          <input type="checkbox" class="chk" id="cb-D-4" data-item="D-4" data-track="D">
+          <label class="item-text" for="cb-D-4">Decision trees</label>
+        </li>
+      
+        <li class="" data-item-row="D-5">
+          <input type="checkbox" class="chk" id="cb-D-5" data-item="D-5" data-track="D">
+          <label class="item-text" for="cb-D-5">Random forests</label>
+        </li>
+      
+        <li class="" data-item-row="D-6">
+          <input type="checkbox" class="chk" id="cb-D-6" data-item="D-6" data-track="D">
+          <label class="item-text" for="cb-D-6">Gradient boosting: XGBoost / LightGBM</label>
+        </li>
+      
+        <li class="" data-item-row="D-7">
+          <input type="checkbox" class="chk" id="cb-D-7" data-item="D-7" data-track="D">
+          <label class="item-text" for="cb-D-7">Support vector machines</label>
+        </li>
+      
+        <li class="" data-item-row="D-8">
+          <input type="checkbox" class="chk" id="cb-D-8" data-item="D-8" data-track="D">
+          <label class="item-text" for="cb-D-8">k-means clustering</label>
+        </li>
+      
+        <li class="" data-item-row="D-9">
+          <input type="checkbox" class="chk" id="cb-D-9" data-item="D-9" data-track="D">
+          <label class="item-text" for="cb-D-9">Hierarchical clustering</label>
+        </li>
+      
+        <li class="" data-item-row="D-10">
+          <input type="checkbox" class="chk" id="cb-D-10" data-item="D-10" data-track="D">
+          <label class="item-text" for="cb-D-10">PCA &amp; dimensionality reduction</label>
+        </li>
+      
+        <li class="" data-item-row="D-11">
+          <input type="checkbox" class="chk" id="cb-D-11" data-item="D-11" data-track="D">
+          <label class="item-text" for="cb-D-11">Model evaluation: accuracy, precision, recall, F1, ROC/AUC</label>
+        </li>
+      
+        <li class="" data-item-row="D-12">
+          <input type="checkbox" class="chk" id="cb-D-12" data-item="D-12" data-track="D">
+          <label class="item-text" for="cb-D-12">Cross-validation &amp; hyperparameter tuning (grid/random search)</label>
+        </li>
+      
+        <li class="" data-item-row="D-13">
+          <input type="checkbox" class="chk" id="cb-D-13" data-item="D-13" data-track="D">
+          <label class="item-text" for="cb-D-13">Feature engineering &amp; feature scaling</label>
+        </li>
+      
+        <li class="" data-item-row="D-14">
+          <input type="checkbox" class="chk" id="cb-D-14" data-item="D-14" data-track="D">
+          <label class="item-text" for="cb-D-14">Handling imbalanced datasets</label>
+        </li>
+      
+        <li class="" data-item-row="D-15">
+          <input type="checkbox" class="chk" id="cb-D-15" data-item="D-15" data-track="D">
+          <label class="item-text" for="cb-D-15">Overfitting/underfitting &amp; regularization in practice</label>
+        </li>
+      
+        <li class="" data-item-row="D-16">
+          <input type="checkbox" class="chk" id="cb-D-16" data-item="D-16" data-track="D">
+          <label class="item-text" for="cb-D-16">scikit-learn pipelines</label>
+        </li>
+      
+        <li class="" data-item-row="D-17">
+          <input type="checkbox" class="chk" id="cb-D-17" data-item="D-17" data-track="D">
+          <label class="item-text" for="cb-D-17">Project: first Kaggle competition entry (Titanic-level)</label>
+        </li>
+      
+        <li class="" data-item-row="D-18">
+          <input type="checkbox" class="chk" id="cb-D-18" data-item="D-18" data-track="D">
+          <label class="item-text" for="cb-D-18">Project: second Kaggle competition with real feature engineering</label>
+        </li>
+      
+    </ul>
+  
+      <div class="resources">
+        <div class="group-title">Resources</div>
+        <ul><li>Hands-On Machine Learning — Aurélien Géron</li><li>scikit-learn documentation</li><li>StatQuest (YouTube)</li></ul>
+      </div>
+      <div class="milestone"><b>Milestone check</b>Given a tabular dataset, independently choose and justify a model, and explain its limitations.</div>
+    </div>
+  </details>
+  <details class="track" id="card-E" style="--card-color:#B8C9D2">
+    <summary>
+      <div class="track-title-row-wrap">
+        <div class="track-title-row">
+          <span class="track-letter">E</span>
+          <span class="track-name">Geospatial Data Science</span>
+        </div>
+        <div class="track-meta"><span>Camp 3</span><span>Months 5–9</span><span>~10 hrs/wk</span></div>
+      </div>
+      <div class="track-progress-wrap">
+        <span class="track-progress-num" id="num-E">0/16</span>
+        <div class="bar-track"><div class="bar-fill" id="bar-E" style="width:0%"></div></div>
+      </div>
+    </summary>
+    <div class="track-body">
+      
+    
+    <ul class="item-list">
+      
+        <li class="" data-item-row="E-0">
+          <input type="checkbox" class="chk" id="cb-E-0" data-item="E-0" data-track="E">
+          <label class="item-text" for="cb-E-0">Coordinate reference systems &amp; projections</label>
+        </li>
+      
+        <li class="" data-item-row="E-1">
+          <input type="checkbox" class="chk" id="cb-E-1" data-item="E-1" data-track="E">
+          <label class="item-text" for="cb-E-1">Vector vs raster data models</label>
+        </li>
+      
+        <li class="" data-item-row="E-2">
+          <input type="checkbox" class="chk" id="cb-E-2" data-item="E-2" data-track="E">
+          <label class="item-text" for="cb-E-2">GeoPandas: reading/writing shapefiles &amp; GeoJSON</label>
+        </li>
+      
+        <li class="" data-item-row="E-3">
+          <input type="checkbox" class="chk" id="cb-E-3" data-item="E-3" data-track="E">
+          <label class="item-text" for="cb-E-3">GeoPandas: spatial joins, spatial indexing</label>
+        </li>
+      
+        <li class="" data-item-row="E-4">
+          <input type="checkbox" class="chk" id="cb-E-4" data-item="E-4" data-track="E">
+          <label class="item-text" for="cb-E-4">Shapely: geometric operations (buffer, intersection, union)</label>
+        </li>
+      
+        <li class="" data-item-row="E-5">
+          <input type="checkbox" class="chk" id="cb-E-5" data-item="E-5" data-track="E">
+          <label class="item-text" for="cb-E-5">Rasterio / rioxarray: reading bands, reprojecting, clipping</label>
+        </li>
+      
+        <li class="" data-item-row="E-6">
+          <input type="checkbox" class="chk" id="cb-E-6" data-item="E-6" data-track="E">
+          <label class="item-text" for="cb-E-6">Working with digital elevation models (DEMs)</label>
+        </li>
+      
+        <li class="" data-item-row="E-7">
+          <input type="checkbox" class="chk" id="cb-E-7" data-item="E-7" data-track="E">
+          <label class="item-text" for="cb-E-7">QGIS desktop: layers, symbology, basic analysis tools</label>
+        </li>
+      
+        <li class="" data-item-row="E-8">
+          <input type="checkbox" class="chk" id="cb-E-8" data-item="E-8" data-track="E">
+          <label class="item-text" for="cb-E-8">Spatial statistics: Moran's I, spatial autocorrelation</label>
+        </li>
+      
+        <li class="" data-item-row="E-9">
+          <input type="checkbox" class="chk" id="cb-E-9" data-item="E-9" data-track="E">
+          <label class="item-text" for="cb-E-9">Interpolation methods: kriging, IDW</label>
+        </li>
+      
+        <li class="" data-item-row="E-10">
+          <input type="checkbox" class="chk" id="cb-E-10" data-item="E-10" data-track="E">
+          <label class="item-text" for="cb-E-10">Remote sensing basics: spectral bands, NDVI/NDWI and other indices</label>
+        </li>
+      
+        <li class="" data-item-row="E-11">
+          <input type="checkbox" class="chk" id="cb-E-11" data-item="E-11" data-track="E">
+          <label class="item-text" for="cb-E-11">Working with Landsat / Sentinel imagery</label>
+        </li>
+      
+        <li class="" data-item-row="E-12">
+          <input type="checkbox" class="chk" id="cb-E-12" data-item="E-12" data-track="E">
+          <label class="item-text" for="cb-E-12">Google Earth Engine — Python API</label>
+        </li>
+      
+        <li class="" data-item-row="E-13">
+          <input type="checkbox" class="chk" id="cb-E-13" data-item="E-13" data-track="E">
+          <label class="item-text" for="cb-E-13">Web mapping: Folium / Leaflet</label>
+        </li>
+      
+        <li class="" data-item-row="E-14">
+          <input type="checkbox" class="chk" id="cb-E-14" data-item="E-14" data-track="E">
+          <label class="item-text" for="cb-E-14">PySAL for spatial analysis</label>
+        </li>
+      
+        <li class="" data-item-row="E-15">
+          <input type="checkbox" class="chk" id="cb-E-15" data-item="E-15" data-track="E">
+          <label class="item-text" for="cb-E-15">Project: land-use change or accessibility analysis with an interactive map output</label>
+        </li>
+      
+    </ul>
+  
+      <div class="resources">
+        <div class="group-title">Resources</div>
+        <ul><li>Python for Geospatial Data Analysis (O’Reilly)</li><li>GeoPandas &amp; Rasterio official docs</li><li>Google Earth Engine documentation</li><li>QGIS documentation</li></ul>
+      </div>
+      <div class="milestone"><b>Milestone check</b>Produce a spatially-valid analysis and explain why a naive non-spatial approach would be wrong.</div>
+    </div>
+  </details>
+  <details class="track" id="card-F" style="--card-color:var(--slate)">
+    <summary>
+      <div class="track-title-row-wrap">
+        <div class="track-title-row">
+          <span class="track-letter">F</span>
+          <span class="track-name">Deep Learning</span>
+        </div>
+        <div class="track-meta"><span>Camp 4</span><span>Months 7–11</span><span>~15 hrs/wk</span></div>
+      </div>
+      <div class="track-progress-wrap">
+        <span class="track-progress-num" id="num-F">0/17</span>
+        <div class="bar-track"><div class="bar-fill" id="bar-F" style="width:0%"></div></div>
+      </div>
+    </summary>
+    <div class="track-body">
+      
+    
+    <ul class="item-list">
+      
+        <li class="" data-item-row="F-0">
+          <input type="checkbox" class="chk" id="cb-F-0" data-item="F-0" data-track="F">
+          <label class="item-text" for="cb-F-0">The perceptron &amp; the biological-neuron analogy (brief)</label>
+        </li>
+      
+        <li class="" data-item-row="F-1">
+          <input type="checkbox" class="chk" id="cb-F-1" data-item="F-1" data-track="F">
+          <label class="item-text" for="cb-F-1">Multilayer perceptrons (MLPs)</label>
+        </li>
+      
+        <li class="" data-item-row="F-2">
+          <input type="checkbox" class="chk" id="cb-F-2" data-item="F-2" data-track="F">
+          <label class="item-text" for="cb-F-2">Forward propagation by hand</label>
+        </li>
+      
+        <li class="" data-item-row="F-3">
+          <input type="checkbox" class="chk" id="cb-F-3" data-item="F-3" data-track="F">
+          <label class="item-text" for="cb-F-3">Backpropagation derived from first principles (NumPy implementation)</label>
+        </li>
+      
+        <li class="" data-item-row="F-4">
+          <input type="checkbox" class="chk" id="cb-F-4" data-item="F-4" data-track="F">
+          <label class="item-text" for="cb-F-4">Loss functions: MSE, cross-entropy</label>
+        </li>
+      
+        <li class="" data-item-row="F-5">
+          <input type="checkbox" class="chk" id="cb-F-5" data-item="F-5" data-track="F">
+          <label class="item-text" for="cb-F-5">Optimizers: SGD, momentum, Adam</label>
+        </li>
+      
+        <li class="" data-item-row="F-6">
+          <input type="checkbox" class="chk" id="cb-F-6" data-item="F-6" data-track="F">
+          <label class="item-text" for="cb-F-6">Activation functions: ReLU, sigmoid, tanh, softmax</label>
+        </li>
+      
+        <li class="" data-item-row="F-7">
+          <input type="checkbox" class="chk" id="cb-F-7" data-item="F-7" data-track="F">
+          <label class="item-text" for="cb-F-7">Regularization: dropout, batch normalization, early stopping</label>
+        </li>
+      
+        <li class="" data-item-row="F-8">
+          <input type="checkbox" class="chk" id="cb-F-8" data-item="F-8" data-track="F">
+          <label class="item-text" for="cb-F-8">PyTorch fundamentals: tensors, autograd</label>
+        </li>
+      
+        <li class="" data-item-row="F-9">
+          <input type="checkbox" class="chk" id="cb-F-9" data-item="F-9" data-track="F">
+          <label class="item-text" for="cb-F-9">PyTorch: building &amp; training a model, DataLoader</label>
+        </li>
+      
+        <li class="" data-item-row="F-10">
+          <input type="checkbox" class="chk" id="cb-F-10" data-item="F-10" data-track="F">
+          <label class="item-text" for="cb-F-10">CNNs: convolution, pooling, filters/kernels</label>
+        </li>
+      
+        <li class="" data-item-row="F-11">
+          <input type="checkbox" class="chk" id="cb-F-11" data-item="F-11" data-track="F">
+          <label class="item-text" for="cb-F-11">CNN architectures: LeNet → ResNet intuition</label>
+        </li>
+      
+        <li class="" data-item-row="F-12">
+          <input type="checkbox" class="chk" id="cb-F-12" data-item="F-12" data-track="F">
+          <label class="item-text" for="cb-F-12">RNNs &amp; LSTMs: sequence modeling basics</label>
+        </li>
+      
+        <li class="" data-item-row="F-13">
+          <input type="checkbox" class="chk" id="cb-F-13" data-item="F-13" data-track="F">
+          <label class="item-text" for="cb-F-13">Attention mechanism intuition</label>
+        </li>
+      
+        <li class="" data-item-row="F-14">
+          <input type="checkbox" class="chk" id="cb-F-14" data-item="F-14" data-track="F">
+          <label class="item-text" for="cb-F-14">Transformers: encoder/decoder, self-attention</label>
+        </li>
+      
+        <li class="" data-item-row="F-15">
+          <input type="checkbox" class="chk" id="cb-F-15" data-item="F-15" data-track="F">
+          <label class="item-text" for="cb-F-15">Transfer learning &amp; fine-tuning pretrained models</label>
+        </li>
+      
+        <li class="" data-item-row="F-16">
+          <input type="checkbox" class="chk" id="cb-F-16" data-item="F-16" data-track="F">
+          <label class="item-text" for="cb-F-16">Project: image classifier from scratch AND via transfer learning, with a written performance comparison</label>
+        </li>
+      
+    </ul>
+  
+      <div class="resources">
+        <div class="group-title">Resources</div>
+        <ul><li>fast.ai — Practical Deep Learning for Coders</li><li>Andrew Ng — Deep Learning Specialization</li><li>Goodfellow, Bengio &amp; Courville — Deep Learning (reference text)</li></ul>
+      </div>
+      <div class="milestone"><b>Milestone check</b>Explain backpropagation on a whiteboard, not just call .backward().</div>
+    </div>
+  </details>
+  <details class="track" id="card-G" style="--card-color:#E4D9BE">
+    <summary>
+      <div class="track-title-row-wrap">
+        <div class="track-title-row">
+          <span class="track-letter">G</span>
+          <span class="track-name">GeoAI — Deep Learning + Geospatial</span>
+        </div>
+        <div class="track-meta"><span>Summit</span><span>Months 10–16+</span><span>~12 hrs/wk</span></div>
+      </div>
+      <div class="track-progress-wrap">
+        <span class="track-progress-num" id="num-G">0/10</span>
+        <div class="bar-track"><div class="bar-fill" id="bar-G" style="width:0%"></div></div>
+      </div>
+    </summary>
+    <div class="track-body">
+      
+    
+    <ul class="item-list">
+      
+        <li class="" data-item-row="G-0">
+          <input type="checkbox" class="chk" id="cb-G-0" data-item="G-0" data-track="G">
+          <label class="item-text" for="cb-G-0">CNNs for land cover classification</label>
+        </li>
+      
+        <li class="" data-item-row="G-1">
+          <input type="checkbox" class="chk" id="cb-G-1" data-item="G-1" data-track="G">
+          <label class="item-text" for="cb-G-1">Object detection in satellite/aerial imagery (buildings, ships, vehicles)</label>
+        </li>
+      
+        <li class="" data-item-row="G-2">
+          <input type="checkbox" class="chk" id="cb-G-2" data-item="G-2" data-track="G">
+          <label class="item-text" for="cb-G-2">Semantic segmentation: U-Net and variants</label>
+        </li>
+      
+        <li class="" data-item-row="G-3">
+          <input type="checkbox" class="chk" id="cb-G-3" data-item="G-3" data-track="G">
+          <label class="item-text" for="cb-G-3">Change detection between before/after imagery</label>
+        </li>
+      
+        <li class="" data-item-row="G-4">
+          <input type="checkbox" class="chk" id="cb-G-4" data-item="G-4" data-track="G">
+          <label class="item-text" for="cb-G-4">Spatiotemporal forecasting models (crop yield, flood, wildfire spread)</label>
+        </li>
+      
+        <li class="" data-item-row="G-5">
+          <input type="checkbox" class="chk" id="cb-G-5" data-item="G-5" data-track="G">
+          <label class="item-text" for="cb-G-5">Graph Neural Networks for spatial networks (roads, utility grids)</label>
+        </li>
+      
+        <li class="" data-item-row="G-6">
+          <input type="checkbox" class="chk" id="cb-G-6" data-item="G-6" data-track="G">
+          <label class="item-text" for="cb-G-6">Working with multispectral &amp; hyperspectral imagery</label>
+        </li>
+      
+        <li class="" data-item-row="G-7">
+          <input type="checkbox" class="chk" id="cb-G-7" data-item="G-7" data-track="G">
+          <label class="item-text" for="cb-G-7">Geospatial foundation models &amp; pretrained satellite embeddings — this area moves fast, search current papers/tools when you arrive here</label>
+        </li>
+      
+        <li class="" data-item-row="G-8">
+          <input type="checkbox" class="chk" id="cb-G-8" data-item="G-8" data-track="G">
+          <label class="item-text" for="cb-G-8">Data pipelines for large raster/satellite datasets (STAC, xarray, Dask)</label>
+        </li>
+      
+        <li class="" data-item-row="G-9">
+          <input type="checkbox" class="chk" id="cb-G-9" data-item="G-9" data-track="G">
+          <label class="item-text" for="cb-G-9">Project: an original applied piece — e.g. mapping informal settlements, crop-yield prediction, or disaster-damage assessment from imagery</label>
+        </li>
+      
+    </ul>
+  
+      <div class="resources">
+        <div class="group-title">Resources</div>
+        <ul><li>Recent papers — arXiv cs.CV + geospatial ML venues</li><li>Microsoft Planetary Computer documentation</li><li>Radiant Earth / MLHub datasets</li></ul>
+      </div>
+      <div class="milestone"><b>Milestone check</b>An applied project detailed and credible enough that a domain practitioner would take it seriously.</div>
+    </div>
+  </details></div>
+
+  <div class="section-heading">Ongoing rails</div>
+  <div id="rails-container">
+  <details class="track" id="card-B" style="--card-color:var(--slate)">
+    <summary>
+      <div class="track-title-row-wrap">
+        <div class="track-title-row">
+          <span class="track-letter">B</span>
+          <span class="track-name">Math Foundations</span>
+        </div>
+        <div class="track-meta"><span>Bedrock — runs underneath everything</span><span>Months 1–12+, ongoing</span><span>~6–8 hrs/wk</span></div>
+      </div>
+      <div class="track-progress-wrap">
+        <span class="track-progress-num" id="num-B">0/24</span>
+        <div class="bar-track"><div class="bar-fill" id="bar-B" style="width:0%"></div></div>
+      </div>
+    </summary>
+    <div class="track-body">
+      
+    <div class="group-title">Linear Algebra</div>
+    <ul class="item-list">
+      
+        <li class="" data-item-row="B-0">
+          <input type="checkbox" class="chk" id="cb-B-0" data-item="B-0" data-track="B">
+          <label class="item-text" for="cb-B-0">Vectors &amp; vector operations</label>
+        </li>
+      
+        <li class="" data-item-row="B-1">
+          <input type="checkbox" class="chk" id="cb-B-1" data-item="B-1" data-track="B">
+          <label class="item-text" for="cb-B-1">Matrices &amp; matrix multiplication</label>
+        </li>
+      
+        <li class="" data-item-row="B-2">
+          <input type="checkbox" class="chk" id="cb-B-2" data-item="B-2" data-track="B">
+          <label class="item-text" for="cb-B-2">Dot product &amp; cross product</label>
+        </li>
+      
+        <li class="" data-item-row="B-3">
+          <input type="checkbox" class="chk" id="cb-B-3" data-item="B-3" data-track="B">
+          <label class="item-text" for="cb-B-3">Determinants &amp; inverses</label>
+        </li>
+      
+        <li class="" data-item-row="B-4">
+          <input type="checkbox" class="chk" id="cb-B-4" data-item="B-4" data-track="B">
+          <label class="item-text" for="cb-B-4">Eigenvalues &amp; eigenvectors</label>
+        </li>
+      
+        <li class="" data-item-row="B-5">
+          <input type="checkbox" class="chk" id="cb-B-5" data-item="B-5" data-track="B">
+          <label class="item-text" for="cb-B-5">Vector spaces &amp; basis (intuition level)</label>
+        </li>
+      
+    </ul>
+  
+    <div class="group-title">Calculus</div>
+    <ul class="item-list">
+      
+        <li class="" data-item-row="B-6">
+          <input type="checkbox" class="chk" id="cb-B-6" data-item="B-6" data-track="B">
+          <label class="item-text" for="cb-B-6">Limits &amp; continuity (brief intuition)</label>
+        </li>
+      
+        <li class="" data-item-row="B-7">
+          <input type="checkbox" class="chk" id="cb-B-7" data-item="B-7" data-track="B">
+          <label class="item-text" for="cb-B-7">Derivatives &amp; rules (chain, product, quotient)</label>
+        </li>
+      
+        <li class="" data-item-row="B-8">
+          <input type="checkbox" class="chk" id="cb-B-8" data-item="B-8" data-track="B">
+          <label class="item-text" for="cb-B-8">Partial derivatives</label>
+        </li>
+      
+        <li class="" data-item-row="B-9">
+          <input type="checkbox" class="chk" id="cb-B-9" data-item="B-9" data-track="B">
+          <label class="item-text" for="cb-B-9">Gradients</label>
+        </li>
+      
+        <li class="" data-item-row="B-10">
+          <input type="checkbox" class="chk" id="cb-B-10" data-item="B-10" data-track="B">
+          <label class="item-text" for="cb-B-10">Chain rule applied to nested functions (the foundation of backprop)</label>
+        </li>
+      
+        <li class="" data-item-row="B-11">
+          <input type="checkbox" class="chk" id="cb-B-11" data-item="B-11" data-track="B">
+          <label class="item-text" for="cb-B-11">Basic integrals (brief, needed for probability)</label>
+        </li>
+      
+    </ul>
+  
+    <div class="group-title">Probability &amp; Statistics</div>
+    <ul class="item-list">
+      
+        <li class="" data-item-row="B-12">
+          <input type="checkbox" class="chk" id="cb-B-12" data-item="B-12" data-track="B">
+          <label class="item-text" for="cb-B-12">Descriptive stats: mean, median, variance, std dev</label>
+        </li>
+      
+        <li class="" data-item-row="B-13">
+          <input type="checkbox" class="chk" id="cb-B-13" data-item="B-13" data-track="B">
+          <label class="item-text" for="cb-B-13">Probability basics: events, conditional probability</label>
+        </li>
+      
+        <li class="" data-item-row="B-14">
+          <input type="checkbox" class="chk" id="cb-B-14" data-item="B-14" data-track="B">
+          <label class="item-text" for="cb-B-14">Bayes' theorem</label>
+        </li>
+      
+        <li class="" data-item-row="B-15">
+          <input type="checkbox" class="chk" id="cb-B-15" data-item="B-15" data-track="B">
+          <label class="item-text" for="cb-B-15">Common distributions: normal, binomial, Poisson</label>
+        </li>
+      
+        <li class="" data-item-row="B-16">
+          <input type="checkbox" class="chk" id="cb-B-16" data-item="B-16" data-track="B">
+          <label class="item-text" for="cb-B-16">Sampling &amp; the Central Limit Theorem</label>
+        </li>
+      
+        <li class="" data-item-row="B-17">
+          <input type="checkbox" class="chk" id="cb-B-17" data-item="B-17" data-track="B">
+          <label class="item-text" for="cb-B-17">Hypothesis testing &amp; p-values</label>
+        </li>
+      
+        <li class="" data-item-row="B-18">
+          <input type="checkbox" class="chk" id="cb-B-18" data-item="B-18" data-track="B">
+          <label class="item-text" for="cb-B-18">Confidence intervals</label>
+        </li>
+      
+        <li class="" data-item-row="B-19">
+          <input type="checkbox" class="chk" id="cb-B-19" data-item="B-19" data-track="B">
+          <label class="item-text" for="cb-B-19">Correlation vs causation</label>
+        </li>
+      
+    </ul>
+  
+    <div class="group-title">Applied Optimization</div>
+    <ul class="item-list">
+      
+        <li class="" data-item-row="B-20">
+          <input type="checkbox" class="chk" id="cb-B-20" data-item="B-20" data-track="B">
+          <label class="item-text" for="cb-B-20">Gradient descent (batch, stochastic, mini-batch)</label>
+        </li>
+      
+        <li class="" data-item-row="B-21">
+          <input type="checkbox" class="chk" id="cb-B-21" data-item="B-21" data-track="B">
+          <label class="item-text" for="cb-B-21">Learning rate intuition</label>
+        </li>
+      
+        <li class="" data-item-row="B-22">
+          <input type="checkbox" class="chk" id="cb-B-22" data-item="B-22" data-track="B">
+          <label class="item-text" for="cb-B-22">Convex vs non-convex functions</label>
+        </li>
+      
+        <li class="" data-item-row="B-23">
+          <input type="checkbox" class="chk" id="cb-B-23" data-item="B-23" data-track="B">
+          <label class="item-text" for="cb-B-23">L1/L2 regularization math</label>
+        </li>
+      
+    </ul>
+  
+      <div class="resources">
+        <div class="group-title">Resources</div>
+        <ul><li>3Blue1Brown — Essence of Linear Algebra &amp; Essence of Calculus</li><li>MIT OCW 18.06 — Gilbert Strang</li><li>Khan Academy — Statistics &amp; Probability</li><li>Practical Statistics for Data Scientists — Bruce &amp; Bruce</li></ul>
+      </div>
+      <div class="milestone"><b>Milestone check</b>Derive the gradient descent update rule and explain backprop's chain-rule step by hand.</div>
+    </div>
+  </details>
+  <details class="track" id="card-H" style="--card-color:var(--flag)">
+    <summary>
+      <div class="track-title-row-wrap">
+        <div class="track-title-row">
+          <span class="track-letter">H</span>
+          <span class="track-name">Visibility &amp; Recognition</span>
+        </div>
+        <div class="track-meta"><span>Supply line — runs alongside everything from month 3</span><span>Month 3 → ongoing</span><span>~4–6 hrs/wk</span></div>
+      </div>
+      <div class="track-progress-wrap">
+        <span class="track-progress-num" id="num-H">0/11</span>
+        <div class="bar-track"><div class="bar-fill" id="bar-H" style="width:0%"></div></div>
+      </div>
+    </summary>
+    <div class="track-body">
+      
+    
+    <ul class="item-list">
+      
+        <li class="" data-item-row="H-0">
+          <input type="checkbox" class="chk" id="cb-H-0" data-item="H-0" data-track="H">
+          <label class="item-text" for="cb-H-0">Set up a public blog or long-form writing space</label>
+        </li>
+      
+        <li class="" data-item-row="H-1">
+          <input type="checkbox" class="chk" id="cb-H-1" data-item="H-1" data-track="H">
+          <label class="item-text" for="cb-H-1">Publish your first "what I learned this month" post</label>
+        </li>
+      
+        <li class="" data-item-row="H-2">
+          <input type="checkbox" class="chk" id="cb-H-2" data-item="H-2" data-track="H">
+          <label class="item-text" for="cb-H-2">Set up a clean, documented GitHub profile</label>
+        </li>
+      
+        <li class="" data-item-row="H-3">
+          <input type="checkbox" class="chk" id="cb-H-3" data-item="H-3" data-track="H">
+          <label class="item-text" for="cb-H-3">Write a proper README for every project repo</label>
+        </li>
+      
+        <li class="" data-item-row="H-4">
+          <input type="checkbox" class="chk" id="cb-H-4" data-item="H-4" data-track="H">
+          <label class="item-text" for="cb-H-4">Make a first small open-source contribution (GeoPandas, Rasterio, and PySAL are approachable entry points)</label>
+        </li>
+      
+        <li class="" data-item-row="H-5">
+          <input type="checkbox" class="chk" id="cb-H-5" data-item="H-5" data-track="H">
+          <label class="item-text" for="cb-H-5">Join relevant communities: r/gis, r/MachineLearning, OSGeo forums, relevant Discord/Slack groups</label>
+        </li>
+      
+        <li class="" data-item-row="H-6">
+          <input type="checkbox" class="chk" id="cb-H-6" data-item="H-6" data-track="H">
+          <label class="item-text" for="cb-H-6">Answer a question on GIS StackExchange or Stack Overflow</label>
+        </li>
+      
+        <li class="" data-item-row="H-7">
+          <input type="checkbox" class="chk" id="cb-H-7" data-item="H-7" data-track="H">
+          <label class="item-text" for="cb-H-7">Enter a Kaggle or DrivenData competition</label>
+        </li>
+      
+        <li class="" data-item-row="H-8">
+          <input type="checkbox" class="chk" id="cb-H-8" data-item="H-8" data-track="H">
+          <label class="item-text" for="cb-H-8">Publish an interactive map or notebook that other people can actually use</label>
+        </li>
+      
+        <li class="" data-item-row="H-9">
+          <input type="checkbox" class="chk" id="cb-H-9" data-item="H-9" data-track="H">
+          <label class="item-text" for="cb-H-9">Find one real stakeholder — an NGO, local org, or research group — and offer to solve one real problem for them</label>
+        </li>
+      
+        <li class="" data-item-row="H-10">
+          <input type="checkbox" class="chk" id="cb-H-10" data-item="H-10" data-track="H">
+          <label class="item-text" for="cb-H-10">Give a talk, or write up a finished project publicly</label>
+        </li>
+      
+    </ul>
+  
+      <div class="resources">
+        <div class="group-title">Resources</div>
+        <ul><li>DrivenData (especially social-good &amp; geospatial challenges)</li><li>Kaggle</li><li>GitHub</li><li>dev.to / Medium / a personal blog</li></ul>
+      </div>
+      <div class="milestone"><b>Milestone check</b>At least one piece of public work that a stranger has cited, used, or responded to.</div>
+    </div>
+  </details></div>
+
+  <footer>
+    <p>Progress is stored per-item and saved automatically as you check things off. If it doesn't persist between visits in your setup, it's still tracking within this session — nothing here is required to make the roadmap useful, it's just a memory aid.</p>
+    <button class="ctrl" id="reset-progress">Reset all progress</button>
+  </footer>
+
+</div>
+
+<script>
+/* ---------------- DATA ---------------- */
+function mk(prefix, groups){
+  let n = 0;
+  return groups.map(g => ({
+    title: g.title,
+    items: g.items.map(text => ({ id: `${prefix}-${n++}`, text }))
+  }));
+}
+
+const TRACKS = [
+  {
+    id:'A', letter:'A', name:'Python Foundations', band:'Base Camp', months:'Months 1–2', hours:'~15 hrs/wk', color:'var(--lowland)', order:0,
+    groups: mk('A', [{ title:null, items:[
+      'Install Python, set up an editor (VS Code/PyCharm), run your first script',
+      'Variables, data types, type casting',
+      'Operators & expressions',
+      'Control flow: if / elif / else',
+      'Loops: for, while, break/continue',
+      'Functions: parameters, return values, default args, *args/**kwargs',
+      'Scope: local vs global',
+      'Core data structures: lists & tuples',
+      'Dictionaries & sets',
+      'String methods & f-strings',
+      'File I/O: reading/writing text & CSV files',
+      'Exceptions: try/except/finally, raising custom exceptions',
+      'Modules & packages, the import system',
+      'Object-oriented programming: classes, attributes, methods',
+      'Inheritance, polymorphism, dunder methods',
+      'Virtual environments: venv or conda',
+      'Package management: pip, requirements.txt',
+      'Git basics: init, add, commit, branch, merge',
+      'GitHub: remotes, push/pull, writing a real README',
+      'List/dict/set comprehensions',
+      'Generators & iterators, yield',
+      'Decorators',
+      'Lambda functions & map/filter/reduce',
+      'Basic testing with pytest',
+      'Debugging: pdb, reading tracebacks',
+      'Consolidation project: build an end-to-end CLI tool or scraper + analyzer'
+    ]}]),
+    resources:['Python Crash Course — Eric Matthes','Official Python Tutorial (docs.python.org)','Corey Schafer — Python YouTube series'],
+    milestone:"Read someone else's intermediate Python script and understand it without Googling every line."
+  },
+  {
+    id:'C', letter:'C', name:'Data Handling & Analysis', band:'Camp 1', months:'Months 2–4', hours:'~12 hrs/wk', color:'#95B586', order:1,
+    groups: mk('C', [{ title:null, items:[
+      'NumPy: arrays, shapes, broadcasting, vectorized ops, indexing/slicing',
+      'Pandas: Series & DataFrame basics',
+      'Pandas: filtering, sorting, .loc/.iloc indexing',
+      'Pandas: groupby, pivot tables, merging/joining',
+      'Handling missing data',
+      'Time series basics in Pandas',
+      'Matplotlib fundamentals',
+      'Seaborn for statistical plots',
+      'Plotly for interactive visualization',
+      'SQL: SELECT, WHERE, JOIN, GROUP BY',
+      'SQL: subqueries & an intro to window functions',
+      'Connecting Python to a database (sqlite3 / SQLAlchemy)',
+      'Data cleaning workflow: outliers, duplicates, type coercion',
+      'Project: full exploratory analysis of a messy public dataset, with written findings'
+    ]}]),
+    resources:['Python for Data Analysis — Wes McKinney','Mode Analytics SQL Tutorial'],
+    milestone:'Given a messy CSV, clean it, explore it, and tell a clear story within a few hours.'
+  },
+  {
+    id:'D', letter:'D', name:'Classical Machine Learning', band:'Camp 2', months:'Months 4–7', hours:'~12 hrs/wk', color:'var(--gold)', order:2,
+    groups: mk('D', [{ title:null, items:[
+      'ML vocabulary: features, labels, train/test/validation split',
+      'Linear regression',
+      'Logistic regression',
+      'k-Nearest Neighbors',
+      'Decision trees',
+      'Random forests',
+      'Gradient boosting: XGBoost / LightGBM',
+      'Support vector machines',
+      'k-means clustering',
+      'Hierarchical clustering',
+      'PCA & dimensionality reduction',
+      'Model evaluation: accuracy, precision, recall, F1, ROC/AUC',
+      'Cross-validation & hyperparameter tuning (grid/random search)',
+      'Feature engineering & feature scaling',
+      'Handling imbalanced datasets',
+      'Overfitting/underfitting & regularization in practice',
+      'scikit-learn pipelines',
+      'Project: first Kaggle competition entry (Titanic-level)',
+      'Project: second Kaggle competition with real feature engineering'
+    ]}]),
+    resources:['Hands-On Machine Learning — Aurélien Géron','scikit-learn documentation','StatQuest (YouTube)'],
+    milestone:'Given a tabular dataset, independently choose and justify a model, and explain its limitations.'
+  },
+  {
+    id:'E', letter:'E', name:'Geospatial Data Science', band:'Camp 3', months:'Months 5–9', hours:'~10 hrs/wk', color:'#B8C9D2', order:3,
+    groups: mk('E', [{ title:null, items:[
+      'Coordinate reference systems & projections',
+      'Vector vs raster data models',
+      'GeoPandas: reading/writing shapefiles & GeoJSON',
+      'GeoPandas: spatial joins, spatial indexing',
+      'Shapely: geometric operations (buffer, intersection, union)',
+      'Rasterio / rioxarray: reading bands, reprojecting, clipping',
+      'Working with digital elevation models (DEMs)',
+      'QGIS desktop: layers, symbology, basic analysis tools',
+      "Spatial statistics: Moran's I, spatial autocorrelation",
+      'Interpolation methods: kriging, IDW',
+      'Remote sensing basics: spectral bands, NDVI/NDWI and other indices',
+      'Working with Landsat / Sentinel imagery',
+      'Google Earth Engine — Python API',
+      'Web mapping: Folium / Leaflet',
+      'PySAL for spatial analysis',
+      'Project: land-use change or accessibility analysis with an interactive map output'
+    ]}]),
+    resources:['Python for Geospatial Data Analysis (O\u2019Reilly)','GeoPandas & Rasterio official docs','Google Earth Engine documentation','QGIS documentation'],
+    milestone:'Produce a spatially-valid analysis and explain why a naive non-spatial approach would be wrong.'
+  },
+  {
+    id:'F', letter:'F', name:'Deep Learning', band:'Camp 4', months:'Months 7–11', hours:'~15 hrs/wk', color:'var(--slate)', order:4,
+    groups: mk('F', [{ title:null, items:[
+      'The perceptron & the biological-neuron analogy (brief)',
+      'Multilayer perceptrons (MLPs)',
+      'Forward propagation by hand',
+      'Backpropagation derived from first principles (NumPy implementation)',
+      'Loss functions: MSE, cross-entropy',
+      'Optimizers: SGD, momentum, Adam',
+      'Activation functions: ReLU, sigmoid, tanh, softmax',
+      'Regularization: dropout, batch normalization, early stopping',
+      'PyTorch fundamentals: tensors, autograd',
+      'PyTorch: building & training a model, DataLoader',
+      'CNNs: convolution, pooling, filters/kernels',
+      'CNN architectures: LeNet → ResNet intuition',
+      'RNNs & LSTMs: sequence modeling basics',
+      'Attention mechanism intuition',
+      'Transformers: encoder/decoder, self-attention',
+      'Transfer learning & fine-tuning pretrained models',
+      'Project: image classifier from scratch AND via transfer learning, with a written performance comparison'
+    ]}]),
+    resources:['fast.ai — Practical Deep Learning for Coders','Andrew Ng — Deep Learning Specialization','Goodfellow, Bengio & Courville — Deep Learning (reference text)'],
+    milestone:"Explain backpropagation on a whiteboard, not just call .backward()."
+  },
+  {
+    id:'G', letter:'G', name:'GeoAI — Deep Learning + Geospatial', band:'Summit', months:'Months 10–16+', hours:'~12 hrs/wk', color:'#E4D9BE', order:5,
+    groups: mk('G', [{ title:null, items:[
+      'CNNs for land cover classification',
+      'Object detection in satellite/aerial imagery (buildings, ships, vehicles)',
+      'Semantic segmentation: U-Net and variants',
+      'Change detection between before/after imagery',
+      'Spatiotemporal forecasting models (crop yield, flood, wildfire spread)',
+      'Graph Neural Networks for spatial networks (roads, utility grids)',
+      'Working with multispectral & hyperspectral imagery',
+      'Geospatial foundation models & pretrained satellite embeddings — this area moves fast, search current papers/tools when you arrive here',
+      'Data pipelines for large raster/satellite datasets (STAC, xarray, Dask)',
+      'Project: an original applied piece — e.g. mapping informal settlements, crop-yield prediction, or disaster-damage assessment from imagery'
+    ]}]),
+    resources:['Recent papers — arXiv cs.CV + geospatial ML venues','Microsoft Planetary Computer documentation','Radiant Earth / MLHub datasets'],
+    milestone:'An applied project detailed and credible enough that a domain practitioner would take it seriously.'
+  }
+];
+
+const RAILS = [
+  {
+    id:'B', letter:'B', name:'Math Foundations', band:'Bedrock — runs underneath everything', months:'Months 1–12+, ongoing', hours:'~6–8 hrs/wk', color:'var(--slate)',
+    groups: mk('B', [
+      { title:'Linear Algebra', items:[
+        'Vectors & vector operations',
+        'Matrices & matrix multiplication',
+        'Dot product & cross product',
+        'Determinants & inverses',
+        'Eigenvalues & eigenvectors',
+        'Vector spaces & basis (intuition level)'
+      ]},
+      { title:'Calculus', items:[
+        'Limits & continuity (brief intuition)',
+        'Derivatives & rules (chain, product, quotient)',
+        'Partial derivatives',
+        'Gradients',
+        'Chain rule applied to nested functions (the foundation of backprop)',
+        'Basic integrals (brief, needed for probability)'
+      ]},
+      { title:'Probability & Statistics', items:[
+        'Descriptive stats: mean, median, variance, std dev',
+        'Probability basics: events, conditional probability',
+        "Bayes' theorem",
+        'Common distributions: normal, binomial, Poisson',
+        'Sampling & the Central Limit Theorem',
+        'Hypothesis testing & p-values',
+        'Confidence intervals',
+        'Correlation vs causation'
+      ]},
+      { title:'Applied Optimization', items:[
+        'Gradient descent (batch, stochastic, mini-batch)',
+        'Learning rate intuition',
+        'Convex vs non-convex functions',
+        'L1/L2 regularization math'
+      ]}
+    ]),
+    resources:['3Blue1Brown — Essence of Linear Algebra & Essence of Calculus','MIT OCW 18.06 — Gilbert Strang','Khan Academy — Statistics & Probability','Practical Statistics for Data Scientists — Bruce & Bruce'],
+    milestone:"Derive the gradient descent update rule and explain backprop's chain-rule step by hand."
+  },
+  {
+    id:'H', letter:'H', name:'Visibility & Recognition', band:'Supply line — runs alongside everything from month 3', months:'Month 3 → ongoing', hours:'~4–6 hrs/wk', color:'var(--flag)',
+    groups: mk('H', [{ title:null, items:[
+      'Set up a public blog or long-form writing space',
+      'Publish your first "what I learned this month" post',
+      'Set up a clean, documented GitHub profile',
+      'Write a proper README for every project repo',
+      'Make a first small open-source contribution (GeoPandas, Rasterio, and PySAL are approachable entry points)',
+      'Join relevant communities: r/gis, r/MachineLearning, OSGeo forums, relevant Discord/Slack groups',
+      'Answer a question on GIS StackExchange or Stack Overflow',
+      'Enter a Kaggle or DrivenData competition',
+      'Publish an interactive map or notebook that other people can actually use',
+      'Find one real stakeholder — an NGO, local org, or research group — and offer to solve one real problem for them',
+      'Give a talk, or write up a finished project publicly'
+    ]}]),
+    resources:['DrivenData (especially social-good & geospatial challenges)','Kaggle','GitHub','dev.to / Medium / a personal blog'],
+    milestone:"At least one piece of public work that a stranger has cited, used, or responded to."
+  }
+];
+
+/* ---------------- STATE / STORAGE ---------------- */
+let state = {};
+const STORAGE_KEY = 'ascent-roadmap-progress';
+
+async function loadState(){
+  try{
+    const res = await window.storage.get(STORAGE_KEY);
+    return res && res.value ? JSON.parse(res.value) : {};
+  }catch(e){ return {}; }
+}
+async function saveState(){
+  try{ await window.storage.set(STORAGE_KEY, JSON.stringify(state)); }
+  catch(e){ /* no persistence available — session-only, fail silently */ }
+}
+
+/* ---------------- HELPERS ---------------- */
+function allItems(track){ return track.groups.flatMap(g => g.items); }
+function trackTotal(track){ return allItems(track).length; }
+function trackChecked(track){ return allItems(track).filter(it => state[it.id]).length; }
+function trackFraction(track){ const t = trackTotal(track); return t ? trackChecked(track)/t : 0; }
+
+/* ---------------- RENDER: TRACK CARD ---------------- */
+function renderCard(track, isOpen){
+  const total = trackTotal(track);
+  const checked = trackChecked(track);
+  const groupsHtml = track.groups.map(g => `
+    ${g.title ? `<div class="group-title">${g.title}</div>` : ''}
+    <ul class="item-list">
+      ${g.items.map(it => `
+        <li class="${state[it.id] ? 'done' : ''}" data-item-row="${it.id}">
+          <input type="checkbox" class="chk" id="cb-${it.id}" data-item="${it.id}" data-track="${track.id}" ${state[it.id] ? 'checked' : ''}>
+          <label class="item-text" for="cb-${it.id}">${it.text}</label>
+        </li>
+      `).join('')}
+    </ul>
+  `).join('');
+
+  return `
+  <details class="track" id="card-${track.id}" style="--card-color:${track.color}" ${isOpen ? 'open' : ''}>
+    <summary>
+      <div class="track-title-row-wrap">
+        <div class="track-title-row">
+          <span class="track-letter">${track.letter}</span>
+          <span class="track-name">${track.name}</span>
+        </div>
+        <div class="track-meta"><span>${track.band}</span><span>${track.months}</span><span>${track.hours}</span></div>
+      </div>
+      <div class="track-progress-wrap">
+        <span class="track-progress-num" id="num-${track.id}">${checked}/${total}</span>
+        <div class="bar-track"><div class="bar-fill" id="bar-${track.id}" style="width:${total ? (checked/total*100) : 0}%"></div></div>
+      </div>
+    </summary>
+    <div class="track-body">
+      ${groupsHtml}
+      <div class="resources">
+        <div class="group-title">Resources</div>
+        <ul>${track.resources.map(r => `<li>${r}</li>`).join('')}</ul>
+      </div>
+      <div class="milestone"><b>Milestone check</b>${track.milestone}</div>
+    </div>
+  </details>`;
+}
+
+/* ---------------- CURRENT FOCUS ---------------- */
+function getCurrentFocus(){
+  const ordered = [...TRACKS].sort((a,b) => a.order - b.order);
+  for (const t of ordered){
+    if (trackChecked(t) < trackTotal(t)) return { track: t, summitReached:false };
+  }
+  return { track: ordered[ordered.length - 1], summitReached:true };
+}
+
+function updateFocusPanel(){
+  const { track, summitReached } = getCurrentFocus();
+  const titleEl = document.getElementById('focus-title');
+  const metaEl = document.getElementById('focus-meta');
+  const nextEl = document.getElementById('focus-next');
+
+  if (summitReached){
+    titleEl.textContent = 'Summit reached on the main route';
+    metaEl.textContent = 'Keep deepening Track G (GeoAI) and Track H (visibility) — mastery keeps compounding from here.';
+    nextEl.innerHTML = '';
+  } else {
+    titleEl.textContent = `Track ${track.letter} — ${track.name}`;
+    metaEl.textContent = `${track.band} · ${track.months} · ${track.hours}`;
+    const items = allItems(track).filter(it => !state[it.id]).slice(0,3);
+    nextEl.innerHTML = items.map(it => `<li>${it.text}</li>`).join('');
+  }
+}
+
+/* ---------------- PROGRESS NUMBERS + CHART ---------------- */
+function updateAll(){
+  // per-track bars
+  [...TRACKS, ...RAILS].forEach(t => {
+    const total = trackTotal(t);
+    const checked = trackChecked(t);
+    const numEl = document.getElementById(`num-${t.id}`);
+    const barEl = document.getElementById(`bar-${t.id}`);
+    if (numEl) numEl.textContent = `${checked}/${total}`;
+    if (barEl) barEl.style.width = `${total ? (checked/total*100) : 0}%`;
+  });
+
+  // overall route % (main 6 tracks only)
+  const mainTotal = TRACKS.reduce((s,t) => s + trackTotal(t), 0);
+  const mainChecked = TRACKS.reduce((s,t) => s + trackChecked(t), 0);
+  document.getElementById('overall-pct').textContent = `${mainTotal ? Math.round(mainChecked/mainTotal*100) : 0}%`;
+
+  // rail percentages
+  const mathTrack = RAILS.find(r => r.id === 'B');
+  const visTrack = RAILS.find(r => r.id === 'H');
+  document.getElementById('math-pct').textContent = `${Math.round(trackFraction(mathTrack)*100)}%`;
+  document.getElementById('vis-pct').textContent = `${Math.round(trackFraction(visTrack)*100)}%`;
+
+  updateFocusPanel();
+  updateElevationChart();
+}
+
+/* ---------------- ELEVATION CHART FILL + FLAG ---------------- */
+const CHART_GEOM = {
+  A:{x:20,    w:91.4,  yTop:210, h:50},
+  C:{x:111.4, w:91.5,  yTop:180, h:80},
+  D:{x:202.9, w:137.1, yTop:150, h:110},
+  E:{x:340,   w:182.9, yTop:124, h:136},
+  F:{x:522.9, w:182.8, yTop:92,  h:168},
+  G:{x:705.7, w:274.3, yTop:50,  h:210}
+};
+const BASELINE = 260;
+
+function updateElevationChart(){
+  TRACKS.forEach(t => {
+    const geom = CHART_GEOM[t.id];
+    const frac = trackFraction(t);
+    const fillH = geom.h * frac;
+    const rect = document.getElementById(`fill-${t.id}`);
+    if (rect){
+      rect.setAttribute('y', BASELINE - fillH);
+      rect.setAttribute('height', fillH);
+    }
+  });
+
+  const { track, summitReached } = getCurrentFocus();
+  const geom = CHART_GEOM[track.id];
+  let fx, fy;
+  if (summitReached){
+    fx = geom.x + geom.w - 6;
+    fy = geom.yTop;
+  } else {
+    const frac = trackFraction(track);
+    fx = geom.x + geom.w * frac;
+    fy = geom.yTop;
+  }
+  const flagGroup = document.getElementById('flag-group');
+  flagGroup.setAttribute('transform', `translate(${fx},${fy + 20})`);
+}
+
+/* ---------------- EVENTS ---------------- */
+function attachListeners(){
+  document.querySelectorAll('input.chk').forEach(cb => {
+    cb.addEventListener('change', (e) => {
+      const id = e.target.dataset.item;
+      state[id] = e.target.checked;
+      const row = e.target.closest('li');
+      if (row) row.classList.toggle('done', e.target.checked);
+      saveState();
+      updateAll();
+    });
+  });
+
+  document.getElementById('expand-all').addEventListener('click', () => {
+    document.querySelectorAll('details.track').forEach(d => d.open = true);
+  });
+  document.getElementById('collapse-all').addEventListener('click', () => {
+    document.querySelectorAll('details.track').forEach(d => d.open = false);
+  });
+  document.getElementById('reset-progress').addEventListener('click', () => {
+    if (confirm('Reset all checked progress? This cannot be undone.')){
+      state = {};
+      saveState();
+      document.querySelectorAll('input.chk').forEach(cb => { cb.checked = false; cb.closest('li')?.classList.remove('done'); });
+      updateAll();
+    }
+  });
+}
+
+/* ---------------- INIT ---------------- */
+async function init(){
+  state = await loadState();
+
+  const tracksContainer = document.getElementById('tracks-container');
+  const focusId = getCurrentFocus().track.id;
+  tracksContainer.innerHTML = TRACKS.map(t => renderCard(t, t.id === focusId)).join('');
+
+  const railsContainer = document.getElementById('rails-container');
+  railsContainer.innerHTML = RAILS.map(r => renderCard(r, false)).join('');
+
+  attachListeners();
+  updateAll();
+}
+init();
+</script>
+
+
+</body></html>
